@@ -27,6 +27,10 @@
     tr:nth-child(even) {
         background-color: #dddddd;
     }
+
+    a{
+        text-decoration: none;
+    }
 </style>
 
 <body>
@@ -36,13 +40,14 @@
     $query = $conn->query($sql);
 
 
-    echo "<table> <tr> <th>Catagory</th> <th> Date</th> </tr>";
+    echo "<table> <tr> <th>Catagory</th> <th> Date</th> <th> Action</th> </tr>";
     while ($data = mysqli_fetch_assoc($query)) {
         $catagory =  $data['catagory_name'];
+        $catagory_id =  $data['catagory_id'];
         $catagory_entry_date =  $data['catagory_entry_date'];
 
 
-        echo "<tr><td>$catagory</td> <td>$catagory_entry_date</td> </tr>";
+        echo "<tr><td>$catagory</td> <td>$catagory_entry_date</td> <td><a href='edit_catagory.php?id=$catagory_id'>Edit</a></td>  </tr>";
     }
 
     echo "</table>"
