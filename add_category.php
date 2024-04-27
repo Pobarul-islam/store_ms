@@ -1,21 +1,17 @@
 <?php
-$host_name = 'localhost';
-$user_name = 'root';
-$password = '';
-$db_name = 'store_db';
 
-$conn = new mysqli($host_name, $user_name, $password, $db_name);
+$host_name = "localhost";
+$db_name = "store_db";
+$user_name = "root";
+$password = '';
+
+$conn = new mysqli($host_name,  $user_name, $password, $db_name,);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo 'Connection failed: ' . $conn->connect_error;
 }
-echo "Connected successfully";
+
 ?>
-
-
-
-
-
 
 
 <!DOCTYPE html>
@@ -30,20 +26,35 @@ echo "Connected successfully";
 <body>
     <?php
 
-    if (isset($category_name, $category_entry_date)) {
+    if (isset($_GET['catagory_name'])) {
 
-        $category_name =  $_GET['category_name'];
-        $category_entry_date = $_GET['category_entry_date'];
+        $catagory_name =  $_GET['catagory_name'];
+        $catagory_entry_date
+            = $_GET['catagory_entry_date'];
+
+        $sql = "INSERT INTO  catagory (catagory_name, catagory_entry_date) VALUES('$catagory_name', '$catagory_entry_date')";
+
+        if ($conn->query($sql) == TRUE) {
+            echo 'data insert';
+        } else {
+            echo "data not inserted";
+        }
     }
 
+
+
     ?>
-    <form action="add_category.php" method="GET">
-        <label for="">Category Name</label>
-        <input type="text" name="category_name"> <br> <br>
-        <label for="">Category Entry Date</label>
-        <input type="date" name="category_entry_date"> <br> <br>
-        <input type="submit" value="Submit">
+
+    <form action="add_category.php" method="get">
+        Category: <br>
+        <input type="text" name="catagory_name"> <br> <br>
+        Category Entry Date: <br>
+        <input type="date" name="catagory_entry_date
+"> <br> <br>
+        <input type="submit" value="submit">
     </form>
+
+
 </body>
 
 </html>
