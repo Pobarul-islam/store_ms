@@ -37,8 +37,10 @@
         <input type="date" name="catagory_entry_date"> <br> <br>
         <input type="submit" value="submit">
     </form>
+    <br>
+    <br>
 
-
+    <button> <a href="./list_of_catagory.php">View List</a> </button>
 </body>
 
 </html>

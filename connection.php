@@ -9,6 +9,4 @@ $conn = new mysqli($host_name,  $user_name, $password, $db_name,);
 
 if ($conn->connect_error) {
     echo 'Connection failed: ' . $conn->connect_error;
-}else{
-    echo 'Connection ok';
 }
