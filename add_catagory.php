@@ -41,6 +41,7 @@
     <br>
 
     <button> <a href="./list_of_catagory.php">View List</a> </button>
+    
 </body>
 
 </html>
