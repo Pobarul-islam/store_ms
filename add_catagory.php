@@ -40,8 +40,9 @@
     <br>
     <br>
 
-    <button> <a href="./list_of_catagory.php">View List</a> </button>
-    
+    <button> <a href="./list_of_catagory.php">Catagory List</a> </button>
+    <button> <a href="./list_of_product.php">Product List</a> </button>
+
 </body>
 
 </html>
