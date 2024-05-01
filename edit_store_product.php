@@ -28,6 +28,26 @@ require('myfunction.php');
         $store_product_quantity = $data['store_product_quantity'];
         $store_product_entry_date = $data['store_product_entry_date'];
     }
+
+
+    if (isset($_GET['store_product_name'])) {
+        $new_store_product_name = $_GET['store_product_name'];
+        $new_store_product_quantity = $_GET['store_product_quantity'];
+        $new_store_product_entry_date = $_GET['store_product_entry_date'];
+        $new_store_product_id = $_GET['store_product_id'];
+
+        $sql1 = "UPDATE store_product SET store_product_name='$new_store_product_name', store_product_quantity='$new_store_product_quantity', 
+        store_product_entry_date='$new_store_product_entry_date' 
+       WHERE store_product_id = $new_store_product_id";
+
+
+        // $query1 = $conn->query($sql);
+        if ($conn->query($sql1) == TRUE) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: ";
+        }
+    }
     ?>
 
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="GET">
@@ -44,8 +64,7 @@ require('myfunction.php');
             ?>
 
 
-         <option value='<?php echo $data_id ?>' <?php if ($store_product_name == $data_id) { echo 'selected';} ?>><?php echo $data_name ?></option>";
-
+         <option value='<?php echo $data_id ?>' <?php if ($store_product_name == $data_id) {echo 'selected'; } ?>><?php echo $data_name ?></option>";
             <?php
             }
 
@@ -53,9 +72,11 @@ require('myfunction.php');
         </select>
         <br> <br>
         Product Quantity: <br>
-        <input type="text" name="store_product_quantity"> <br> <br>
+        <input type="number" name="store_product_quantity" value='<?php echo $store_product_quantity ?>'> <br> <br>
         store Entry Date: <br>
-        <input type="date" name="store_product_entry_date"> <br> <br>
+        <input type="date" name="store_product_entry_date" value='<?php echo $store_product_entry_date ?>'> <br> <br>
+
+        <input hidden type="text" name="store_product_id" value='<?php echo $store_product_id ?>'> <br> <br>
         <input type="submit" value="submit">
     </form>
     <br>
