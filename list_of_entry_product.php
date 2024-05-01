@@ -65,7 +65,7 @@ while ($data1 = mysqli_fetch_assoc(($query1))) {
         <td>$data_list[$store_product_name]</td>
         <td>$store_product_quantity</td> 
         <td>$store_product_entry_date</td> 
-        <td><a href='edit_product.php?id=$store_product_id'>Edit</a></td>  
+        <td><a href='edit_store_product.php?id=$store_product_id'>Edit</a></td>  
         </tr>";
     }
 
