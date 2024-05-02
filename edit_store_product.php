@@ -15,6 +15,8 @@ require('myfunction.php');
 <body>
     <?php
 
+    $store_product_name = ""; // Initialize with a default value
+
     if (isset($_GET['id'])) {
         $getid = $_GET['id'];
 
@@ -63,8 +65,7 @@ require('myfunction.php');
                 $data_name = $data['product_name'];
             ?>
 
-
-         <option value='<?php echo $data_id ?>' <?php if ($store_product_name == $data_id) {echo 'selected'; } ?>><?php echo $data_name ?></option>";
+    <option value='<?php echo $data_id ?>' <?php if ($store_product_name == $data_id) { echo 'selected';} ?>><?php echo $data_name ?><option>";
             <?php
             }
 
