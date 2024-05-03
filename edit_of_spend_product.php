@@ -9,19 +9,18 @@ require('myfunction.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>edit spend Product</title>
+    <title>Edit spend Product</title>
 </head>
 
 <body>
     <?php
 
-    $spend_product_name = ""; // Initialize with a default value
-    $spend_product_id = ""; // Initialize with a default value
+    $store_product_name = ""; // Initialize with a default value
 
     if (isset($_GET['id'])) {
         $getid = $_GET['id'];
 
-        $sql = "SELECT * FROM spend_product WHERE spend_product_id=$getid"; // Corrected table name
+        $sql = "SELECT * FROM  spend_product WHERE spend_product_id=$getid";
 
         $query = $conn->query($sql);
         $data = mysqli_fetch_assoc($query);
@@ -33,17 +32,18 @@ require('myfunction.php');
     }
 
 
-    if (isset($_GET['spend_product_name'])) {
-        $new_spend_product_name = $_GET['spend_product_name'];
-        $new_spend_product_quantity = $_GET['spend_product_quantity'];
-        $new_spend_product_entry_date = $_GET['spend_product_entry_date'];
-        $new_spend_product_id = $_GET['spend_product_id'];
+    if (isset($_GET['store_product_name'])) {
+        $new_store_product_name = $_GET['store_product_name'];
+        $new_store_product_quantity = $_GET['store_product_quantity'];
+        $new_store_product_entry_date = $_GET['store_product_entry_date'];
+        $new_store_product_id = $_GET['store_product_id'];
 
-        $sql1 = "UPDATE spend_product SET spend_product_name='$new_spend_product_name', spend_product_quantity='$new_spend_product_quantity', 
-        spend_product_entry_date='$new_spend_product_entry_date' 
-       WHERE spend_product_id = $new_spend_product_id";
+        $sql1 = "UPDATE store_product SET store_product_name='$new_store_product_name', store_product_quantity='$new_store_product_quantity', 
+        store_product_entry_date='$new_store_product_entry_date' 
+       WHERE store_product_id = $new_store_product_id";
 
 
+        // $query1 = $conn->query($sql);
         if ($conn->query($sql1) == TRUE) {
             echo "Record updated successfully";
         } else {
@@ -54,7 +54,7 @@ require('myfunction.php');
 
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="GET">
         Product: <br> <br>
-        <select name='spend_product_name'>
+        <select name="store_product_name">
             <?php
 
             $sql = "SELECT * FROM product";
@@ -65,28 +65,25 @@ require('myfunction.php');
                 $data_name = $data['product_name'];
             ?>
 
-                <option value='<?php echo $data_id ?>' <?php if ($spend_product_name == $data_id) {
-                                                            echo 'selected';
-                                                        } ?>><?php echo $data_name ?>
-                </option>
-            <?php
+     <option value='<?php echo $data_id ?>' <?php if ($spend_product_name == $data_id) {echo 'selected';} ?>><?php echo $data_name ?> <option>";
+                <?php
             }
 
-            ?>
+                ?>
         </select>
         <br> <br>
         Product Quantity: <br>
-        <input type="number" name="spend_product_quantity" value='<?php echo $spend_product_quantity ?>'> <br> <br>
-        Store Entry Date: <br>
-        <input type="date" name="spend_product_entry_date" value='<?php echo $spend_product_entry_date ?>'> <br> <br>
+        <input type="number" name="store_product_quantity" value='<?php echo $spend_product_quantity ?>'> <br> <br>
+        store Entry Date: <br>
+        <input type="date" name="store_product_entry_date" value='<?php echo $spend_product_entry_date ?>'> <br> <br>
 
-        <input hidden type="text" name="spend_product_id" value='<?php echo $spend_product_id ?>'> <br> <br>
+        <input hidden type="text" name="store_product_id" value='<?php echo $spend_product_id ?>'> <br> <br>
         <input type="submit" value="submit">
     </form>
     <br>
     <br>
 
-    <button> <a href="./list_of_category.php">Category List</a> </button>
+    <button> <a href="./list_of_catagory.php">Catagory List</a> </button>
     <button> <a href="./list_of_product.php">Product List</a> </button>
 
 </body>
